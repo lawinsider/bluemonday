@@ -94,6 +94,9 @@ type Policy struct {
 	setOfElementsAllowedWithoutAttrs map[string]struct{}
 
 	setOfElementsToSkipContent map[string]struct{}
+
+	// Custom function to process URLs
+	URLProcessor func(url *url.URL) (newUrl string, valid bool)
 }
 
 type attrPolicy struct {
@@ -122,6 +125,9 @@ func (p *Policy) init() {
 		p.setOfElementsAllowedWithoutAttrs = make(map[string]struct{})
 		p.setOfElementsToSkipContent = make(map[string]struct{})
 		p.initialized = true
+		p.URLProcessor = func(url *url.URL) (newUrl string, valid bool) {
+			return url.String(), true
+		}
 	}
 }
 

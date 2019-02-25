@@ -534,7 +534,7 @@ func (p *Policy) validURL(rawurl string) (string, bool) {
 			}
 
 			if urlPolicy == nil || urlPolicy(u) == true {
-				return u.String(), true
+				return p.URLProcessor(u)
 			}
 
 			return "", false
@@ -542,7 +542,7 @@ func (p *Policy) validURL(rawurl string) (string, bool) {
 
 		if p.allowRelativeURLs {
 			if u.String() != "" {
-				return u.String(), true
+				return p.URLProcessor(u)
 			}
 		}
 
