@@ -1,4 +1,4 @@
-module github.com/microcosm-cc/bluemonday
+module github.com/lawinsider/bluemonday
 
 go 1.9
 
